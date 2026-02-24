@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Voti – Monica</title>
+
+    <!-- STILE -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ======== PALETTE ======== */
+        :root {
+            --bg: #A7C7E7; /* blu carta da zucchero */
+            --glass: rgba(255, 255, 255, 0.25);
+            --border: rgba(255, 255, 255, 0.35);
+            --text: #6A4A00; /* oro scuro */
+            --text-light: #8B6508;
+            --shadow: rgba(0, 0, 0, 0.15);
+        }
+
+        /* ======== GENERALE ======== */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        h1, h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+        }
+
+        .icon {
+            width: 28px;
+            height: 28px;
+            filter: drop-shadow(0 0 4px rgba(255,255,255,0.4));
+        }
+
+        /* ======== CARD GLASS ======== */
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px var(--shadow);
+            backdrop-filter: blur(12px);
+            width: 420px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 15px;
+        }
+
+        button {
+            background: var(--text);
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: var(--text-light);
+        }
+
+        table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .delete-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .delete-btn img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) invert(1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ======== TITOLO ======== -->
+    <div class="card">
+        <h1>
+            <img src="assets/icons/book.svg" class="icon">
+            Registro Voti
+        </h1>
+        <p>Versione personale di Monica</p>
+    </div>
+
+    <!-- ======== INSERISCI VOTO ======== -->
+    <div class="card">
+        <h2>
+            <img src="assets/icons/plus.svg" class="icon">
+            Inserisci Voto
+        </h2>
+
+        <input type="text" id="materia" placeholder="Materia">
+        <input type="number" id="voto" placeholder="Voto">
+        <button onclick="aggiungiVoto()">Aggiungi</button>
+
+        <h2 style="margin-top:20px;">
+            <img src="assets/icons/list.svg" class="icon">
+            Voti Inseriti
+        </h2>
+
+        <table id="tabella-voti">
+            <thead>
+                <tr>
+                    <th>Materia</th>
+                    <th>Voto</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <p><strong>Media:</strong> <span id="media">0.00</span></p>
+    </div>
+
+    <!-- ======== ASSENZE ======== -->
+    <div class="card">
+        <h2>
+            <img src="assets/icons/calendar.svg" class="icon">
+            Registra Assenza
+        </h2>
+
+        <input type="date" id="giorno">
+        <input type="number" id="ore" placeholder="Ore di assenza">
+        <button onclick="aggiungiAssenza()">Aggiungi</button>
+
+        <h2 style="margin-top:20px;">
+            <img src="assets/icons/clock.svg" class="icon">
+            Assenze Registrate
+        </h2>
+
+        <table id="tabella-assenze">
+            <thead>
+                <tr>
+                    <th>Giorno</th>
+                    <th>Ore</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <p><strong>Totale ore di assenza:</strong> <span id="totale-assenze">0</span></p>
+    </div>
+
+    <!-- SCRIPT -->
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
+
